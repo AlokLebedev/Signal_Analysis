@@ -1,0 +1,28 @@
+a = input('Фамилия пациента')
+b = input('Имя пациента')
+c = int (input('Год рождения'))
+d = int (input('Месяц рождения'))
+e = int (input('День рождения'))
+g = input('Диагноз')
+h = input('Статус')
+if d == 9 and e >= 29:
+    print('False')
+elif d == 4 or d == 6 or d == 9 or d == 11 and e == 31:
+    print('False')
+elif a and b.isalpha():
+    if c <= 2025 and d <= 12 and e <= 31:
+        c1 = str(c)
+        d1 = str(d)
+        e1 = str(e)
+        f = '-'.join([c1, d1, e1])
+        if g.startswith('A') or g.startswith('B') or g.startswith('C') and g[-1].isdigit():
+            if 'активный' in h or 'ремиссия' in h or 'выписан' in h:
+                print(';'.join([a, b, f, g, h]))
+            else :
+                print('False')
+        else :
+            print('False')
+    else :
+        print('False')
+else :
+    print('False')
