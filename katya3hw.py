@@ -5,12 +5,13 @@ analysis_history = (
     ("Креатинин", 20240322, 88),
     ("Общий_анализ_крови_лейкоциты", 20240322, 7.3),
 )
+
 def compare_analysis(patient_history, type_analysis):
-    list = [analysis for analysis in patient_history if analysis[0] == type_analysis]
-    sorted_list = sorted(list, key = lambda x: x[1])
+    list = [analysis for analysis in patient_history if analysis[0] == type_analysis] # смекалка 100/100, хорошее преобразование кортежа в список через comrehension
+    sorted_list = sorted(list, key = lambda x: x[1]) # лямбда-функции ещё не проходили, так что респект за продвинутую сортировку
     print(f'Анализы {type_analysis}:')
     for i in sorted_list:
-        name, data, result = i 
+        name, data, result = i # переменная name далее не используется; в таких случая можно написать нижнее подчёркивание: _, data, result = i (для того чтобы не резервировать полезное слово name)
         data_str = str(data)
         format_data = f'{data_str[:4]} - {data_str[4:6]} - {data_str[6:]}'
         print(f' - {format_data}: {result}')
@@ -47,6 +48,7 @@ lab_norm_gem = ('Гемоглобин', 120, 160, 'г/л')
 lab_norm_leic = ('Лейкоциты', 4, 9, '/л')
 patient_analysis = {'Гемоглобин': 115, 'Глюкоза натощак': 4.8, 'Лейкоциты': 10.2}
 def check_analysis(analysis, lab_norm):
+    # внутри функции тоже можно прописать нормальные значения 
     if lab_norm[1] > analysis.get(lab_norm[0]):
         print(f'{lab_norm[0]}: {analysis.get(lab_norm[0])} {lab_norm[3]} - ниже нормы')
     elif lab_norm[2] >= analysis.get(lab_norm[0]) or lab_norm[1] == analysis.get(lab_norm[0]):
